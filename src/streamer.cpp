@@ -253,11 +253,13 @@ void Streamer::performPlayerUpdate(Player &player, bool automatic)
 				else
 				{
 					update = player.updateWhenIdle;
+					sampgdk::logprintf("update to false 1");
 				}
 			}
 			else
 			{
 				update = false;
+				sampgdk::logprintf("update to false 2");
 			}
 		}
 		else
