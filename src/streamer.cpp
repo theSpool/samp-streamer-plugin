@@ -56,7 +56,6 @@ void Streamer::startAutomaticUpdate()
 		boost::chrono::steady_clock::time_point currentTime = boost::chrono::steady_clock::now();
 		if (!core->getData()->players.empty())
 		{
-			sampgdk::logprintf("startAutomaticUpdate on player");
 			bool updatedActiveItems = false;
 			for (boost::unordered_map<int, Player>::iterator p = core->getData()->players.begin(); p != core->getData()->players.end(); ++p)
 			{
@@ -68,6 +67,7 @@ void Streamer::startAutomaticUpdate()
 				{
 					if (++p->second.tickCount >= p->second.tickRate)
 					{
+						sampgdk::logprintf("streamer 1");
 						if (!updatedActiveItems)
 						{
 							processActiveItems();
@@ -82,6 +82,10 @@ void Streamer::startAutomaticUpdate()
 							startManualUpdate(p->second, p->second.delayedUpdateType);
 						}
 						p->second.tickCount = 0;
+					}
+					else
+					{
+						sampgdk::logprintf("streamer 2 (fail)");
 					}
 				}
 			}
