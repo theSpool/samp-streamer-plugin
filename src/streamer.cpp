@@ -227,6 +227,7 @@ void Streamer::performPlayerUpdate(Player &player, bool automatic)
 				if (!sampgdk::IsPlayerInAnyVehicle(player.playerId))
 				{
 					sampgdk::GetPlayerPos(player.playerId, &player.position[0], &player.position[1], &player.position[2]);
+					sampgdk::logprintf("position: %f %f %f", player.position[0], player.position[1], player.position[2]);
 				}
 				else
 				{
