@@ -56,6 +56,7 @@ void Streamer::startAutomaticUpdate()
 		boost::chrono::steady_clock::time_point currentTime = boost::chrono::steady_clock::now();
 		if (!core->getData()->players.empty())
 		{
+			sampgdk::logprintf("startAutomaticUpdate on player");
 			bool updatedActiveItems = false;
 			for (boost::unordered_map<int, Player>::iterator p = core->getData()->players.begin(); p != core->getData()->players.end(); ++p)
 			{
