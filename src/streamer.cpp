@@ -67,7 +67,6 @@ void Streamer::startAutomaticUpdate()
 				{
 					if (++p->second.tickCount >= p->second.tickRate)
 					{
-						sampgdk::logprintf("streamer 1");
 						if (!updatedActiveItems)
 						{
 							processActiveItems();
@@ -82,10 +81,6 @@ void Streamer::startAutomaticUpdate()
 							startManualUpdate(p->second, p->second.delayedUpdateType);
 						}
 						p->second.tickCount = 0;
-					}
-					else
-					{
-						sampgdk::logprintf("streamer 2 (fail)");
 					}
 				}
 			}
@@ -226,6 +221,7 @@ void Streamer::performPlayerUpdate(Player &player, bool automatic)
 		if (!player.updateUsingCameraPosition)
 		{
 			int state = sampgdk::GetPlayerState(player.playerId);
+			sampgdk::logprintf("the state: %d", state);
 			if ((state != PLAYER_STATE_NONE && state != PLAYER_STATE_WASTED) || (state == PLAYER_STATE_SPECTATING && !player.requestingClass))
 			{
 				if (!sampgdk::IsPlayerInAnyVehicle(player.playerId))
@@ -314,6 +310,7 @@ void Streamer::performPlayerUpdate(Player &player, bool automatic)
 		}
 		for (std::vector<int>::const_iterator t = core->getData()->typePriority.begin(); t != core->getData()->typePriority.end(); ++t)
 		{
+			sampgdk::logprintf("123 update = %d", update);
 			if (update)
 			{
 				switch (*t)
@@ -366,6 +363,7 @@ void Streamer::performPlayerUpdate(Player &player, bool automatic)
 					}
 					case STREAMER_TYPE_3D_TEXT_LABEL:
 					{
+						sampgdk::logprintf("stream 3d labels");
 						if (!core->getData()->textLabels.empty() && player.enabledItems[STREAMER_TYPE_3D_TEXT_LABEL])
 						{
 							if (core->getChunkStreamer()->getChunkStreamingEnabled())
