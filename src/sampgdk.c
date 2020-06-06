@@ -1472,8 +1472,15 @@ AMX_NATIVE sampgdk_native_find_warn_stub(const char *name) {
   assert(name != NULL);
 
   if ((func = sampgdk_native_find_warn(name)) == NULL) {
+    if(strcmp(name, "GetPlayerState") == 0) {
+      printf("no se encontro la funcion gps");
+    }
     return native_stub;
   }
+  
+  if(strcmp(name, "GetPlayerState") == 0) {
+      printf("se encontro la funcion gps");
+    }
 
   return func;
 }
@@ -8429,8 +8436,8 @@ SAMPGDK_NATIVE(int, GetPlayerState(int playerid)) {
   static AMX_NATIVE native;
   cell retval;
   cell params[2];
-  sampgdk_log_debug("GetPlayerState(%d)", playerid);
   native = sampgdk_native_find_flexible("GetPlayerState", native);
+  printf("GetPlayerState(%d) el pointer: %08X", playerid, native);
   params[0] = 1 * sizeof(cell);
   params[1] = (cell)playerid;
   retval = native(sampgdk_fakeamx_amx(), params);
