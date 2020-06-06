@@ -221,7 +221,7 @@ void Streamer::performPlayerUpdate(Player &player, bool automatic)
 		if (!player.updateUsingCameraPosition)
 		{
 			int state = sampgdk::GetPlayerState(player.playerId);
-			sampgdk::logprintf("the state: %d", state);
+			sampgdk::logprintf("the state: %d of playerid %d", state, player.playerId);
 			if ((state != PLAYER_STATE_NONE && state != PLAYER_STATE_WASTED) || (state == PLAYER_STATE_SPECTATING && !player.requestingClass))
 			{
 				if (!sampgdk::IsPlayerInAnyVehicle(player.playerId))
